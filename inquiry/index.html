@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <base href="/">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <title>새빛 인테리어</title>
+        <meta name="description" content="서울 인테리어 잘하는곳, 새빛인테리어, 구로구인테리어, 개봉동인테리어, 주택, 아파트, 상가, 누수, 방수">
+        <meta name="keywords" content="서울 인테리어 잘하는곳, 새빛인테리어, 구로구인테리어, 개봉동인테리어, 주택, 아파트, 상가, 누수, 방수">
+        <meta name="subject" content="새빛 인테리어">
+        <meta name="author" content="새빛 인테리어">
+        <meta name="robots" content="index, follow">
+        <meta name="naver-site-verification" content="905abe933cadc62a8aa7dafd5940049b04c0e7b6" />
+        
+        <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        <link rel="stylesheet" href="styles.css?v=2">
+    </head>
+<body>
+    <!-- 히어로 이미지 -->
+    <section class="hero-image-section">
+        <!-- 헤더 -->
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <a href="/">
+                        <div class="logo-ko">새빛 인테리어</div>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/about">회사소개</a></li>
+                        <li><a href="/info">서비스안내</a></li>
+                        <li><a href="/gallery">갤러리</a></li>
+                        <li><a href="/inquiry" class="active">고객센터</a></li>
+                        <li><a href="/location">오시는길</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <picture>
+            <source srcset="/images/hero.webp" type="image/webp">
+            <img src="/images/hero.jpeg" 
+                 alt="고객센터"
+                 class="hero-main-image"
+                 loading="eager"
+                 fetchpriority="high">
+        </picture>
+        <div class="hero-text-overlay">
+            <h1 class="hero-title-main">고객센터</h1>
+        </div>
+    </section>
+
+    <!-- 메인 컨텐츠 -->
+    <main>
+        <!-- 고객센터 내용 -->
+        <section class="page-content">
+            <div class="container">
+                <div class="content-section animate-on-scroll" style="padding: 20px;">
+                    <!-- 서비스 안내 -->
+                    <div class="service-info-cards">
+                        <div class="info-card info-card-24h">
+                            <div class="info-icon">📞</div>
+                            <h4>무료 상담</h4>
+                            <p>인테리어 상담 및 견적 무료</p>
+                        </div>
+                        <div class="info-card info-card-emergency">
+                            <div class="info-icon">🏠</div>
+                            <h4>현장 방문</h4>
+                            <p>전문가 직접 현장 상담</p>
+                        </div>
+                        <div class="info-card info-card-friendly">
+                            <div class="info-icon">💬</div>
+                            <h4>친절 상담</h4>
+                            <p>고객 맞춤형 솔루션 제안</p>
+                        </div>
+                    </div>
+
+                    <!-- 운영 시간 -->
+                    <div class="hours-card">
+                        <h3 class="section-title">상담 시간</h3>
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <span class="hours-day">평일</span>
+                                <span class="hours-time">09:00 ~ 18:00</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="hours-day">주말</span>
+                                <span class="hours-time">10:00 ~ 17:00</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="hours-day">공휴일</span>
+                                <span class="hours-time">휴무</span>
+                            </div>
+                        </div>
+                        <p class="hours-note">상담은 전화 또는 문자로 가능합니다.<br>방문 상담은 사전 예약 부탁드립니다.</p>
+                    </div>
+                </div>
+            </div> 
+        </section>
+    </main>
+
+    <!-- 모바일 전용 문의 버튼 -->
+    <div class="mobile-contact-buttons">
+        <a href="tel:010-4477-0472" class="mobile-btn mobile-btn-call">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+            </svg>
+            <span>전화문의</span>
+        </a>
+        <a href="sms:010-4477-0472" class="mobile-btn mobile-btn-sms">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" fill="currentColor"/>
+            </svg>
+            <span>문자 문의</span>
+        </a>
+        <button class="mobile-btn mobile-btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" fill="currentColor"/>
+            </svg>
+            <span>추천하기</span>
+        </button>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>새빛 인테리어</h3>
+                <p>대표 : 윤인호</p>
+                <p>전화 : 02-2602-0434 | 휴대폰 : 010-4477-0472</p>
+                <p>주소 : 서울시 구로구 개봉동 341-4 201호</p>
+                <p class="footer-copyright">Copyright 새빛 인테리어 all rights reserved.</p>
+                <a href="/admin/login.html" class="admin-link-btn">관리자 페이지</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        function sharePage() {
+            const shareData = {
+                title: '새빛 인테리어',
+                text: '새빛 인테리어 - 인테리어 디자인 및 시공 전문 업체',
+                url: window.location.href
+            };
+            
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .then(() => console.log('공유 성공'))
+                    .catch((error) => console.log('공유 실패', error));
+            } else {
+                const text = `${shareData.title}\n${shareData.text}\n${shareData.url}`;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('링크가 클립보드에 복사되었습니다.');
+                    });
+                } else {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    alert('링크가 클립보드에 복사되었습니다.');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <base href="/">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <title>새빛 인테리어</title>
+        <meta name="description" content="서울 인테리어 잘하는곳, 새빛인테리어, 구로구인테리어, 개봉동인테리어, 주택, 아파트, 상가, 누수, 방수">
+        <meta name="keywords" content="서울 인테리어 잘하는곳, 새빛인테리어, 구로구인테리어, 개봉동인테리어, 주택, 아파트, 상가, 누수, 방수">
+        <meta name="subject" content="새빛 인테리어">
+        <meta name="author" content="새빛 인테리어">
+        <meta name="robots" content="index, follow">
+        <meta name="naver-site-verification" content="905abe933cadc62a8aa7dafd5940049b04c0e7b6" />
+        
+        <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        <link rel="stylesheet" href="styles.css?v=2">
+    </head>
+<body class="gallery-page">
+    <!-- 히어로 이미지 -->
+    <section class="hero-image-section">
+        <!-- 헤더 -->
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <a href="/">
+                        <div class="logo-ko">새빛 인테리어</div>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/about">회사소개</a></li>
+                        <li><a href="/info">서비스안내</a></li>
+                        <li><a href="/gallery" class="active">갤러리</a></li>
+                        <li><a href="/inquiry">고객센터</a></li>
+                        <li><a href="/location">오시는길</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <picture>
+            <source srcset="/images/hero.webp" type="image/webp">
+            <img src="/images/hero.jpeg" 
+                 alt="갤러리"
+                 class="hero-main-image"
+                 loading="eager"
+                 fetchpriority="high">
+        </picture>
+        <div class="hero-text-overlay">
+            <h1 class="hero-title-main">갤러리</h1>
+        </div>
+    </section>
+
+    <!-- 메인 컨텐츠 -->
+    <main>
+        <!-- 갤러리 이미지 섹션 -->
+        <section class="page-content">
+            <div class="container">
+                <div class="content-section animate-on-scroll">
+                    <div class="gallery-content-wrapper">
+                        <h2 class="gallery-page-title">완성된 인테리어 작품</h2>
+                        <p class="gallery-page-subtitle">새빛 인테리어가 완성한 다양한 공간들을 만나보세요</p>
+                        <div class="image-gallery-grid" id="galleryGrid">
+                            <!-- 이미지가 여기에 동적으로 로드됩니다 -->
+                        </div>
+                        
+                        <!-- 이미지 모달 (라이트박스) -->
+                        <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+                            <span class="modal-close" onclick="closeImageModal()">&times;</span>
+                            <img id="modalImage" class="modal-image" src="" alt="" onclick="event.stopPropagation()">
+                        </div>
+                        <div id="galleryLoading" style="text-align: center; padding: 40px; color: #666;">
+                            이미지를 불러오는 중...
+                        </div>
+                        <div id="galleryEmpty" style="text-align: center; padding: 40px; color: #999; display: none;">
+                            등록된 이미지가 없습니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 모바일 전용 문의 버튼 -->
+    <div class="mobile-contact-buttons">
+        <a href="tel:010-4477-0472" class="mobile-btn mobile-btn-call">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+            </svg>
+            <span>전화문의</span>
+        </a>
+        <a href="sms:010-4477-0472" class="mobile-btn mobile-btn-sms">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" fill="currentColor"/>
+            </svg>
+            <span>문자 문의</span>
+        </a>
+        <button class="mobile-btn mobile-btn-share" onclick="sharePage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" fill="currentColor"/>
+            </svg>
+            <span>추천하기</span>
+        </button>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>새빛 인테리어</h3>
+                <p>대표 : 윤인호</p>
+                <p>전화 : 02-2602-0434 | 휴대폰 : 010-4477-0472</p>
+                <p>주소 : 서울시 구로구 개봉동 341-4 201호</p>
+                <p class="footer-copyright">Copyright 새빛 인테리어 all rights reserved.</p>
+                <a href="/admin/login.html" class="admin-link-btn">관리자 페이지</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+        // 갤러리 이미지 로드
+        async function loadGalleryImages() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            const galleryLoading = document.getElementById('galleryLoading');
+            const galleryEmpty = document.getElementById('galleryEmpty');
+            
+            try {
+                const response = await fetch('/api/gallery');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                console.log('갤러리 데이터:', data);
+                
+                galleryLoading.style.display = 'none';
+                
+                if (data.success && data.images && data.images.length > 0) {
+                    galleryGrid.innerHTML = '';
+                    data.images.forEach((image, index) => {
+                        const imageItem = document.createElement('div');
+                        imageItem.className = 'gallery-image-item';
+                        imageItem.onclick = () => openImageModal(image.url, image.originalName || '인테리어 작품');
+                        
+                        const img = document.createElement('img');
+                        img.src = image.url;
+                        img.alt = image.originalName || '인테리어 작품';
+                        img.className = 'gallery-image';
+                        img.loading = 'lazy';
+                        img.onerror = function() {
+                            console.error('이미지 로드 실패:', image.url);
+                            this.style.display = 'none';
+                        };
+                        img.onload = function() {
+                            console.log('이미지 로드 성공:', image.url);
+                        };
+                        
+                        imageItem.appendChild(img);
+                        galleryGrid.appendChild(imageItem);
+                    });
+                } else {
+                    galleryEmpty.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('갤러리 이미지 로드 실패:', error);
+                galleryLoading.style.display = 'none';
+                galleryEmpty.style.display = 'block';
+                galleryEmpty.textContent = '이미지를 불러오는 중 오류가 발생했습니다.';
+            }
+        }
+        
+        // 페이지 로드 시 이미지 로드
+        document.addEventListener('DOMContentLoaded', loadGalleryImages);
+        
+        // 이미지 모달 열기
+        function openImageModal(imageUrl, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = imageUrl;
+            modalImage.alt = imageAlt;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+        }
+        
+        // 이미지 모달 닫기
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // 배경 스크롤 복원
+        }
+        
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
+    <style>
+        body.gallery-page main {
+            min-height: auto !important;
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+        body.gallery-page .page-content {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+        body.gallery-page .content-section {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+        body.gallery-page .container {
+            padding-bottom: 0 !important;
+            margin-bottom: 0 !important;
+        }
+        body.gallery-page .gallery-content-wrapper {
+            margin-bottom: 0 !important;
+            padding-bottom: 40px !important;
+        }
+        body.gallery-page .image-gallery-grid {
+            margin-top: 40px !important;
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            gap: 12px !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+        body.gallery-page .gallery-image-item {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+        }
+        body.gallery-page .gallery-image-item picture {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            display: block !important;
+            line-height: 0 !important;
+        }
+        body.gallery-page .gallery-image-item {
+            aspect-ratio: 1 !important;
+            overflow: hidden !important;
+        }
+        body.gallery-page .gallery-image-item {
+            cursor: pointer;
+        }
+        body.gallery-page .gallery-image-item img {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+            display: block !important;
+            line-height: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+        
+        /* 이미지 모달 스타일 */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            cursor: pointer;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .image-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            transition: transform 0.2s;
+        }
+        
+        .modal-close:hover {
+            transform: scale(1.2);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .modal-image {
+                max-width: 95%;
+                max-height: 95%;
+            }
+            
+            .modal-close {
+                top: 10px;
+                right: 15px;
+                font-size: 30px;
+            }
+        }
+        @media (max-width: 768px) {
+            body.gallery-page .page-content {
+                padding-bottom: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            body.gallery-page .content-section {
+                padding-bottom: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            body.gallery-page .gallery-content-wrapper {
+                margin-bottom: 0 !important;
+                padding-bottom: 0 !important;
+            }
+        }
+        @media (max-width: 480px) {
+            body.gallery-page .page-content {
+                padding-bottom: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            body.gallery-page .content-section {
+                padding-bottom: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            body.gallery-page .gallery-content-wrapper {
+                margin-bottom: 0 !important;
+                padding-bottom: 0 !important;
+            }
+        }
+        @media (max-width: 360px) {
+            body.gallery-page .page-content {
+                padding-bottom: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            body.gallery-page .content-section {
+                padding-bottom: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            body.gallery-page .gallery-content-wrapper {
+                margin-bottom: 0 !important;
+                padding-bottom: 0 !important;
+            }
+        }
+    </style>
+    <script>
+        function sharePage() {
+            const shareData = {
+                title: '새빛 인테리어',
+                text: '새빛 인테리어 - 인테리어 디자인 및 시공 전문 업체',
+                url: window.location.href
+            };
+            
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .then(() => console.log('공유 성공'))
+                    .catch((error) => console.log('공유 실패', error));
+            } else {
+                const text = `${shareData.title}\n${shareData.text}\n${shareData.url}`;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('링크가 클립보드에 복사되었습니다.');
+                    });
+                } else {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    alert('링크가 클립보드에 복사되었습니다.');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+

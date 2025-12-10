@@ -1,0 +1,21 @@
+{
+  "name": "saevit-interior",
+  "version": "1.0.0",
+  "description": "새빛 인테리어 모바일 전용 홈페이지",
+  "main": "index.html",
+  "scripts": {
+    "serve": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mobile",
+    "website"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.21.2",
+    "serve": "^14.2.1",
+    "sharp": "^0.34.5"
+  }
+}

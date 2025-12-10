@@ -1,0 +1,24 @@
+name = ""
+compatibility_date = "2025-12-10"
+pages_build_output_dir = "."
+
+# R2 버킷 설정 (이미지 저장소)
+[[r2_buckets]]
+binding = "IMAGES_BUCKET"
+bucket_name = ""
+preview_bucket_name = ""
+
+# KV 네임스페이스 설정 (인증 및 메타데이터 저장)
+[[kv_namespaces]]
+binding = "AUTH_KV"
+id = ""
+
+# 환경 변수 (로컬 개발용)
+[vars]
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "admin123"
+
+
+
+
+

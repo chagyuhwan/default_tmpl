@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지 - 새빛 인테리어</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .admin-header {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-header > div {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .admin-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .user-icon {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #D4A574 0%, #E8D5B7 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .user-name {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .logout-btn {
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+        
+        .upload-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .upload-area {
+            border: 2px dashed #D4A574;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            background: #fafafa;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .upload-area:hover {
+            background: #f0f0f0;
+        }
+        
+        .upload-area.dragover {
+            background: #fff5e6;
+            border-color: #D4A574;
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .upload-text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .upload-hint {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .upload-btn {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #D4A574 0%, #E8D5B7 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .upload-btn.show {
+            display: inline-block;
+        }
+        
+        .images-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .image-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .image-info {
+            padding: 10px;
+            background: #fff;
+        }
+        
+        .image-name {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+            word-break: break-all;
+        }
+        
+        .image-date {
+            font-size: 11px;
+            color: #999;
+        }
+        
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(231, 76, 60, 0.9);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .delete-btn:hover {
+            background: rgba(192, 57, 43, 1);
+        }
+        
+        .message {
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .message.show {
+            display: block;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        
+        .account-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .account-form {
+            max-width: 800px;
+        }
+        
+        .company-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .company-form {
+            max-width: 800px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .form-input {
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #D4A574;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+        
+        .save-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #D4A574 0%, #E8D5B7 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 165, 116, 0.4);
+        }
+        
+        .cancel-btn {
+            padding: 12px 30px;
+            background: #e0e0e0;
+            color: #666;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .cancel-btn:hover {
+            background: #d0d0d0;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <div>
+                <h1 class="admin-title">관리자 페이지</h1>
+                <div class="user-info" id="userInfo">
+                    <span class="user-name">로딩 중...</span>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="logout()">로그아웃</button>
+        </div>
+        
+        <div id="message" class="message"></div>
+        
+        <!-- 계정 정보 섹션 -->
+        <div class="account-section">
+            <h2 class="section-title">계정 정보</h2>
+            <div class="account-form" id="accountForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">현재 아이디</label>
+                        <input type="text" id="currentUsername" class="form-input" readonly style="background: #f5f5f5;">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">새 아이디</label>
+                        <input type="text" id="newUsername" class="form-input" placeholder="변경할 아이디를 입력하세요">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">현재 비밀번호</label>
+                        <input type="password" id="currentPassword" class="form-input" placeholder="현재 비밀번호를 입력하세요">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">새 비밀번호</label>
+                        <input type="password" id="newPassword" class="form-input" placeholder="변경할 비밀번호를 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">새 비밀번호 확인</label>
+                        <input type="password" id="newPasswordConfirm" class="form-input" placeholder="비밀번호를 다시 입력하세요">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="save-btn" onclick="saveAccountInfo()">수정</button>
+                    <button class="cancel-btn" onclick="loadAccountInfo()">취소</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 회사 정보 섹션 -->
+        <div class="company-section">
+            <h2 class="section-title">홈페이지 정보</h2>
+            <div class="company-form" id="companyForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">업체명</label>
+                        <input type="text" id="companyName" class="form-input" placeholder="업체명을 입력하세요">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">대표자명</label>
+                        <input type="text" id="representative" class="form-input" placeholder="대표자명을 입력하세요">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">이메일</label>
+                        <input type="email" id="email" class="form-input" placeholder="이메일을 입력하세요">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">전화번호</label>
+                        <input type="tel" id="phone" class="form-input" placeholder="전화번호를 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">휴대폰</label>
+                        <input type="tel" id="mobile" class="form-input" placeholder="휴대폰 번호를 입력하세요">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label class="form-label">주소</label>
+                        <input type="text" id="address" class="form-input" placeholder="주소를 입력하세요">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button class="save-btn" onclick="saveCompanyInfo()">수정</button>
+                    <button class="cancel-btn" onclick="loadCompanyInfo()">취소</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="upload-section">
+            <h2 class="section-title">이미지 업로드</h2>
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📸</div>
+                <div class="upload-text">이미지를 드래그하거나 클릭하여 업로드</div>
+                <div class="upload-hint">JPG, PNG, WebP 형식 지원</div>
+                <input type="file" id="fileInput" accept="image/*" multiple>
+            </div>
+            <button class="upload-btn" id="uploadBtn" onclick="uploadFiles()">업로드</button>
+        </div>
+        
+        <div class="images-section">
+            <h2 class="section-title">업로드된 이미지</h2>
+            <div id="imagesContainer">
+                <div class="loading">로딩 중...</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/admin/admin.js"></script>
+</body>
+</html>
+
